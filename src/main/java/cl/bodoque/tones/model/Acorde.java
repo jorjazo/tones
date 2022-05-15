@@ -6,21 +6,20 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class EscalaAbstracta implements Escala {
+public class Acorde {
     private List<Tono> tonos;
-
-    public EscalaAbstracta(Tono base, List<Double> offsets) {
+    
+    public Acorde(Tono tonica, List<Double> offsets) {
         tonos = new ArrayList<Tono>(offsets.size() + 1);
-        tonos.add(base);
-        Tono actual = base;
+        tonos.add(tonica);
+        Tono actual = tonica;
         for(Double offset: offsets) {
             actual = actual.masTonos(offset).orElseThrow(() -> new IllegalStateException("No hay tono"));
             tonos.add(actual);
         }
     }
     
-    @Override
-    public Tono getTonoBase() {
+    public Tono getTonica() {
         return tonos.get(0);
     }
 }
